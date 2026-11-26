@@ -1,0 +1,6 @@
+__pycache__/
+out/
+competition.json
+play-code.json
+*-quota.json
+requirements.json
