@@ -39,6 +39,10 @@ def main():
     assert "\n" not in ENTRY and "\r" not in ENTRY, "entry must be one line"
     assert ENTRY == ENTRY.strip(), "entry has leading/trailing whitespace"
     assert all(ord(c) >= 32 for c in ENTRY), "entry has control characters"
+    # Keep the entry plain ASCII: a curly quote or em dash slipped in by
+    # an editor would still pass the gate but would read as a different
+    # line on the judge's side than the one drafted here.
+    assert ENTRY.isascii(), "entry must be plain ASCII"
     out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
     os.makedirs(out_dir, exist_ok=True)
     path = os.path.join(out_dir, "entry.txt")
